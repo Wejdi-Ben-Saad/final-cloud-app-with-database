@@ -57,18 +57,11 @@
                 <input class="btn btn-info btn-block" type="button" value="Start Exam" data-toggle="collapse" data-target="#exam">
                 <!-- <button type="button"   -->
                 <div id="exam" class="collapse">
-                    {% if user.is_authenticated %}
-                        {% for question in course.question_set.all %}
-                        <p>{{question.question_text}}</p>
-                        {% for choice in question.choice_set.all %}
-                        <p>{{choice.choise_content}}</p>
-                        {% endfor %}
-                        {% endfor %}
-                    {% endif %}
+                    
 
 
                     {% if user.is_authenticated %}
-                    <form id="questionform" action="point to a submit view" method="post">
+                    <form id="questionform" action="{% url 'onlinecourse:submit' course.id  %}" method="post">
                             {% for question in course.question_set.all %}
                                 <div class="card mt-1">
                                     <div class="card-header"><h5>{{ question.question_text}}</h5></div>
